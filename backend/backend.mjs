@@ -94,3 +94,20 @@ export const getAfficheFilm = async (collection = "film") => {
         return [];
     }
 };
+
+// Fonction qui retourne les images pour les cards
+export const getImgCard = async (collection = "film") => {
+    try {
+        const affiche = await pb.collection(collection).getFullList();
+        const updatedaffiche = affiche.map((film) => ({
+            ...film,
+            imageUrl: film.affiche_film
+                ? pb.files.getUrl(film, Array.isArray(film.photocard_film) ? film.photocard_film[0] : film.photocard_film)
+                : null,
+        }));
+        return updatedaffiche;
+    } catch (error) {
+        console.error("Erreur lors de la récupération des affiches :", error);
+        return [];
+    }
+};

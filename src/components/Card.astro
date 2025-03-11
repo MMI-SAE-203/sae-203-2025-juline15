@@ -1,0 +1,39 @@
+---
+import { getImgCard } from "../../backend/backend.mjs";
+const films = await getImgCard();
+---
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
+    {
+        films.map((film: any) => (
+            <article class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+                <h2 class="text-xl font-bold p-4">
+                    <a href={`/programmation/${film.id}`}>{film.titre_film}</a>
+                </h2>
+                <img
+                    class="w-90 mx-auto rounded-lg lg:p-4"
+                    src={film.imageUrl}
+                    alt={`Affiche de ${film.titre_film}`}
+                />
+
+                <div class="p-4">
+                    <ul class="mt-2 text-sm text-gray-600">
+                        <li>
+                            <strong>Début :</strong>{" "}
+                            {film.dateheureprojection_film}
+                        </li>
+                        <li>
+                            <strong>Durée :</strong> {film.duree_film} min
+                        </li>
+                        <li>
+                            <strong>Public :</strong>{" "}
+                            {film.Tous_publics
+                                ? "Tout public"
+                                : "Interdit -12 ans"}
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        ))
+    }
+</div>
