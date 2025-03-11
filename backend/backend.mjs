@@ -48,18 +48,31 @@ export async function oneAnimateurName(nom_invite) {
 };
 
 //Une fonction qui permet d’ajouter les informations d’un film
-
+export async function addNewFilm(newFilm) {
+    await pb.collection('film').create(newFilm);
+};
 
 //Une fonction qui permet de modifier les informations d’un film
-
+export async function updateFilmById(id) {
+    await pb.collection('films').update(id);
+};
 
 //Une fonction qui permet d’ajouter les informations d’une activité
-
+export async function addNewActivite(newActivite) {
+    await pb.collection('activite').create(newActivite);
+};
 
 //Une fonction qui permet de modifier les informations d’une activité
-
+export async function updateActiviteById(id) {
+    await pb.collection('activite').update(id);
+};
 
 //Une fonction qui permet d’ajouter les informations d’un invité
-
+export async function addNewInvite(newInvite) {
+    await pb.collection('invite').create(newInvite);
+};
 
 //Une fonction qui permet de modifier les informations d’un invité
+export async function updateInviteById(id) {
+    await pb.collection('invite').update(id);
+};
