@@ -1,0 +1,19 @@
+---
+import PocketBase from "pocketbase";
+const pb = new PocketBase("http://127.0.0.1:8090");
+
+import { getAfficheFilm } from "../../backend/backend.mjs";
+const film = await getAfficheFilm();
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:col-span-2">
+    {
+        film.map((item: any) => (
+            <img
+                class="w-full rounded-2xl"
+                src={item.imageUrl}
+                alt="Affiche du film"
+            />
+        ))
+    }
+</div>
