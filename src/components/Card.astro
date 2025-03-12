@@ -1,4 +1,5 @@
 ---
+import { formatDate } from "../../backend/helpers.js";
 const { films } = Astro.props;
 ---
 
@@ -18,7 +19,7 @@ const { films } = Astro.props;
                 <div class="p-5 px-10">
                     <ul class="mt-5 mx-20">
                         <li class="my-3">
-                            Début : {film.dateheureprojection_film}
+                            Début : {formatDate(film.dateheureprojection_film)}
                         </li>
                         <li class="my-3">Durée : {film.duree_film} min</li>
                         <li class="my-3">
