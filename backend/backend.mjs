@@ -103,24 +103,21 @@ export async function getAllFilms() {
 // Pour les images multiples
 export const getMultipleImg = async (id, collection = "film") => {
     try {
-        // Recherche du film avec l'ID spécifié
         const film = await pb.collection(collection).getOne(id);
 
-        // Récupère toutes les images liées au film
         const allImages = [
             ...(Array.isArray(film.affiche_film) ? film.affiche_film : [film.affiche_film]),
             ...(Array.isArray(film.photo_film) ? film.photo_film : [film.photo_film]),
             ...(Array.isArray(film.photo2_film) ? film.photo2_film : [film.photo2_film]),
         ];
 
-        // Génère les URLs des images
         const imageUrls = allImages
             .filter((image) => image)
             .map((image) => pb.files.getUrl(film, image, { thumb: "1024x1024" }));
 
         return [{
             ...film,
-            imageUrls, // Ajoute les URLs d'images au film spécifique
+            imageUrls,
         }];
     } catch (error) {
         console.error("Erreur lors de la récupération des images :", error);

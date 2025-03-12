@@ -4,6 +4,7 @@ import { oneActeurID, getAllInvite } from "../../../backend/backend.mjs";
 
 const { id } = Astro.params;
 const invite = await oneActeurID(id);
+const imageUrls = invite.imageUrls || [];
 
 if (!invite) {
     console.error(`Invite with id ${id} not found`);
@@ -43,7 +44,7 @@ export async function getStaticPaths() {
 
             <div>
                 <ul>
-                    <li>{invite.bio_invite}</li>
+                    <li><div set:html={invite.bio_invite}></div></li>
                     <li><strong>Rôle :</strong> {invite.role}</li>
                 </ul>
             </div>

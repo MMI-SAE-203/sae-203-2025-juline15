@@ -2,10 +2,8 @@
 import PocketBase from "pocketbase";
 import { getAllInvite } from "../../../backend/backend.mjs";
 
-// Initialisation de PocketBase
-const pb = new PocketBase("http://127.0.0.1:8090"); // Remplace par ton URL PocketBase
+const pb = new PocketBase("http://127.0.0.1:8090");
 
-// Récupération des invités depuis PocketBase
 const invites = await getAllInvite();
 import Layout from "../../layouts/Layout.astro";
 ---
@@ -17,17 +15,14 @@ import Layout from "../../layouts/Layout.astro";
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {
                 invites.map((invite) => {
-                    // Récupération des URL des photos d'invités
                     const imageUrls = [];
 
-                    // Si 'photo_invite' est une image unique, on la convertit en tableau
                     if (invite.photo_invite) {
                         if (typeof invite.photo_invite === "string") {
                             imageUrls.push(
                                 pb.files.getUrl(invite, invite.photo_invite),
                             );
                         } else {
-                            // Si c'est un tableau, on l'utilise directement
                             invite.photo_invite.forEach((img) => {
                                 imageUrls.push(pb.files.getUrl(invite, img));
                             });
