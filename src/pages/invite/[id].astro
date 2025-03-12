@@ -10,12 +10,6 @@ if (!invite) {
     return Astro.redirect("/programmation");
 }
 
-const imageUrls = invite.photo_invite
-    ? Array.isArray(invite.photo_invite)
-        ? invite.photo_invite.map((img) => pb.files.getUrl(invite, img))
-        : [pb.files.getUrl(invite, invite.photo_invite)]
-    : [];
-
 export async function getStaticPaths() {
     const invites = await getAllInvite();
     return invites.map((invite) => ({
