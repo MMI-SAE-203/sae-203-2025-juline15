@@ -11,6 +11,8 @@ const film = await oneFilmID(id);
 
 const images = await getMultipleImg(id);
 
+const bandeannonce_film = film.bandeannonce_film;
+
 if (!film) {
     console.error(`Film with id ${id} not found`);
     return Astro.redirect("/programmation");
@@ -67,13 +69,13 @@ export async function getStaticPaths() {
 
                 <div class="mt-5 lg:mt-0 lg:w-1/2">
                     <ul>
-                        <li class="my-3">
+                        <li class="my-3 text-xl">
                             Durée : {film.duree_film}
                         </li>
-                        <li class="my-3">
+                        <li class="my-3 text-xl">
                             Genre : {film.genre_film}
                         </li>
-                        <li class="my-3">
+                        <li class="my-3 text-xl">
                             Date de sortie : {film.datesortie_film}
                         </li>
                         <li class="my-3 mt-15 mb-15">
@@ -83,5 +85,23 @@ export async function getStaticPaths() {
                 </div>
             </div>
         </article>
+
+        <div>
+            <p class="mx-8 mb-5 text-xl">En découvrir plus :</p>
+        </div>
+        <div>
+            {
+                bandeannonce_film && (
+                    <a
+                        href={bandeannonce_film}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="border-2 border-red-500 bg-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-red-500 hover:text-white transition duration-300 text-center block w-max mx-auto mb-20"
+                    >
+                        BANDE ANNONCE VF
+                    </a>
+                )
+            }
+        </div>
     </div>
 </Layout>
