@@ -1,9 +1,72 @@
 ---
+import PocketBase from "pocketbase";
+import { getAllInvite } from "../../../backend/backend.mjs";
+
+// Initialisation de PocketBase
+const pb = new PocketBase("http://127.0.0.1:8090"); // Remplace par ton URL PocketBase
+
+// Récupération des invités depuis PocketBase
+const invites = await getAllInvite();
 import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout>
-    <div>
-        <h1></h1>
-    </div>
+    <main class="p-6">
+        <h1>Nos Invités</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {
+                invites.map((invite) => {
+                    // Récupération des URL des photos d'invités
+                    const imageUrls = [];
+
+                    // Si 'photo_invite' est une image unique, on la convertit en tableau
+                    if (invite.photo_invite) {
+                        if (typeof invite.photo_invite === "string") {
+                            imageUrls.push(
+                                pb.files.getUrl(invite, invite.photo_invite),
+                            );
+                        } else {
+                            // Si c'est un tableau, on l'utilise directement
+                            invite.photo_invite.forEach((img) => {
+                                imageUrls.push(pb.files.getUrl(invite, img));
+                            });
+                        }
+                    }
+
+                    return (
+                        <a
+                            href={`/invite/${invite.id}`}
+                            class="block rounded-lg shadow-lg overflow-hidden bg-white transform transition-all duration-300 hover:scale-105"
+                        >
+                            <div class="w-full h-[500px] flex flex-col items-center justify-start bg-white">
+                                {imageUrls.length > 0 ? (
+                                    <img
+                                        class="w-[300px] h-[450px] object-cover mt-3"
+                                        src={imageUrls[0]}
+                                        alt={`Photo de ${invite.nom_invite}`}
+                                    />
+                                ) : (
+                                    <div class="w-[300px] h-[450px] flex items-center justify-center bg-gray-300">
+                                        <span class="text-gray-600">
+                                            Aucune photo
+                                        </span>
+                                    </div>
+                                )}
+
+                                <div class="p-4 w-full text-center flex-grow">
+                                    <h2 class="text-lg font-semibold mb-2">
+                                        {invite.nom_invite}
+                                    </h2>
+                                    <p class="text-sm text-gray-600">
+                                        <strong>Rôle :</strong> {invite.role}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </main>
 </Layout>
