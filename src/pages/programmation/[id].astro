@@ -9,8 +9,7 @@ import {
 const { id } = Astro.params;
 const film = await oneFilmID(id);
 
-// Cette fonction récupère les images spécifiques du film avec l'id
-const images = await getMultipleImg(id); // Passer l'ID du film pour récupérer ses images
+const images = await getMultipleImg(id);
 
 if (!film) {
     console.error(`Film with id ${id} not found`);
@@ -27,7 +26,6 @@ export async function getStaticPaths() {
 
 <Layout>
     <div>
-        {/* Affichage du film spécifique */}
         <article>
             <h2>
                 <a href={`/programmation/${film.id}`}>
@@ -36,7 +34,6 @@ export async function getStaticPaths() {
             </h2>
 
             <div>
-                {/* Affichage des images associées au film spécifique */}
                 {
                     images.length > 0 &&
                         images[0].imageUrls?.map((url, index) => (
@@ -51,7 +48,6 @@ export async function getStaticPaths() {
             </div>
 
             <div>
-                {/* Informations supplémentaires sur le film */}
                 <ul>
                     <li>
                         <strong>Durée :</strong>

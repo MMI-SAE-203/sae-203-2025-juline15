@@ -2,6 +2,9 @@
 import Layout from "../../layouts/Layout.astro";
 import Carousel from "../../components/Carousel.astro";
 import Card from "../../components/Card.astro";
+import { getAfficheFilm } from "../../../backend/backend.mjs";
+
+const films = await getAfficheFilm();
 ---
 
 <Layout>
@@ -29,12 +32,12 @@ import Card from "../../components/Card.astro";
 
     <div>
         <h3>Quelques exemples de films diffusés :</h3>
-        <Carousel />
+        <Carousel films={films}/>
     </div>
 
     <div>
         <h3>Programmation en fonction des jours :</h3>
         <p>11 JUILLET 2025</p>
-        <Card />
+        <Card films={films}/>
     </div>
 </Layout>

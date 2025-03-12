@@ -1,6 +1,6 @@
 ---
 import { getImgCard } from "../../backend/backend.mjs";
-const films = await getImgCard();
+const { films } = Astro.props;
 ---
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 p-4">
@@ -12,7 +12,7 @@ const films = await getImgCard();
                 </h2>
                 <img
                     class="w-90 mx-auto rounded-lg lg:p-4"
-                    src={film.imageUrl}
+                    src={film.imageCard}
                     alt={`Affiche de ${film.titre_film}`}
                 />
 

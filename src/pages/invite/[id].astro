@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { oneActeurID, getAllInvite } from "../../../backend/backend.mjs";
+
+const { id } = Astro.params;
+const invite = await oneActeurID(id);
+
+if (!invite) {
+    console.error(`Invite with id ${id} not found`);
+    return Astro.redirect("/programmation");
+}
+
+const imageUrls = invite.photo_invite
+    ? Array.isArray(invite.photo_invite)
+        ? invite.photo_invite.map((img) => pb.files.getUrl(invite, img))
+        : [pb.files.getUrl(invite, invite.photo_invite)]
+    : [];
+
+export async function getStaticPaths() {
+    const invites = await getAllInvite();
+    return invites.map((invite) => ({
+        params: { id: invite.id.toString() },
+    }));
+}
+---
+
+<Layout>
+    <div>
+        <article>
+            <h2>
+                <a href={`/invite/${invite.id}`}>
+                    {invite.nom_invite}
+                </a>
+            </h2>
+
+            <div>
+                {
+                    imageUrls.length > 0 &&
+                        imageUrls.map((url, index) => (
+                            <img
+                                key={index}
+                                class="w-full rounded-lg"
+                                src={url}
+                                alt={`Photo ${index + 1} de ${invite.nom_invite}`}
+                            />
+                        ))
+                }
+            </div>
+
+            <div>
+                <ul>
+                    <li>{invite.bio_invite}</li>
+                    <li><strong>Rôle :</strong> {invite.role}</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</Layout>

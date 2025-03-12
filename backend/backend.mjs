@@ -81,16 +81,15 @@ export async function updateInviteById(id) {
 // Fonction qui retourne les images
 export const getAfficheFilm = async (collection = "film") => {
     try {
-        const affiche = await pb.collection(collection).getFullList();
-        const updatedaffiche = affiche.map((film) => ({
-            ...film,
-            imageUrl: film.affiche_film
-                ? pb.files.getUrl(film, Array.isArray(film.affiche_film) ? film.affiche_film[0] : film.affiche_film)
-                : null,
-        }));
-        return updatedaffiche;
+        let affiche = await pb.collection("film").getFullList();
+        affiche = affiche.map((film) => {
+            film.affiche = pb.files.getURL(film, film.affiche_film);
+            film.imageCard = pb.files.getURL(film, film.photocard_film);
+            return film;
+        });
+        return affiche;
     } catch (error) {
-        console.error("Erreur lors de la récupération des affiches :", error);
+        console.error("Erreur lors de la récupération des affiches 1 :", error);
         return [];
     }
 };
@@ -146,3 +145,8 @@ export const getMultipleImg = async (id, collection = "film") => {
     }
 };
 
+// Fonction qui retourne tous les invite
+export async function getAllInvite() {
+    const oneRecord = await pb.collection('invite').getFullList();
+    return oneRecord;
+}
