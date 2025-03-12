@@ -99,15 +99,50 @@ export const getAfficheFilm = async (collection = "film") => {
 export const getImgCard = async (collection = "film") => {
     try {
         const affiche = await pb.collection(collection).getFullList();
-        const updatedaffiche = affiche.map((film) => ({
+        const updatedimg = affiche.map((film) => ({
             ...film,
             imageUrl: film.affiche_film
                 ? pb.files.getUrl(film, Array.isArray(film.photocard_film) ? film.photocard_film[0] : film.photocard_film)
                 : null,
         }));
-        return updatedaffiche;
+        return updatedimg;
     } catch (error) {
         console.error("Erreur lors de la récupération des affiches :", error);
         return [];
     }
 };
+
+// Fonction qui retourne tous les films
+export async function getAllFilms() {
+    const oneRecord = await pb.collection('film').getFullList();
+    return oneRecord;
+}
+
+// Pour les images multiples
+export const getMultipleImg = async (id, collection = "film") => {
+    try {
+        // Recherche du film avec l'ID spécifié
+        const film = await pb.collection(collection).getOne(id);
+
+        // Récupère toutes les images liées au film
+        const allImages = [
+            ...(Array.isArray(film.affiche_film) ? film.affiche_film : [film.affiche_film]),
+            ...(Array.isArray(film.photo_film) ? film.photo_film : [film.photo_film]),
+            ...(Array.isArray(film.photo2_film) ? film.photo2_film : [film.photo2_film]),
+        ];
+
+        // Génère les URLs des images
+        const imageUrls = allImages
+            .filter((image) => image)
+            .map((image) => pb.files.getUrl(film, image, { thumb: "1024x1024" }));
+
+        return [{
+            ...film,
+            imageUrls, // Ajoute les URLs d'images au film spécifique
+        }];
+    } catch (error) {
+        console.error("Erreur lors de la récupération des images :", error);
+        return [];
+    }
+};
+

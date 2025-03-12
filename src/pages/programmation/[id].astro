@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {
+    oneFilmID,
+    getMultipleImg,
+    getAllFilms,
+} from "../../../backend/backend.mjs";
+
+const { id } = Astro.params;
+const film = await oneFilmID(id);
+
+// Cette fonction récupère les images spécifiques du film avec l'id
+const images = await getMultipleImg(id); // Passer l'ID du film pour récupérer ses images
+
+if (!film) {
+    console.error(`Film with id ${id} not found`);
+    return Astro.redirect("/programmation");
+}
+
+export async function getStaticPaths() {
+    const films = await getAllFilms();
+    return films.map((film) => ({
+        params: { id: film.id.toString() },
+    }));
+}
+---
+
+<Layout>
+    <div>
+        {/* Affichage du film spécifique */}
+        <article>
+            <h2>
+                <a href={`/programmation/${film.id}`}>
+                    {film.titre_film}
+                </a>
+            </h2>
+
+            <div>
+                {/* Affichage des images associées au film spécifique */}
+                {
+                    images.length > 0 &&
+                        images[0].imageUrls?.map((url, index) => (
+                            <img
+                                key={index}
+                                class="w-full rounded-lg"
+                                src={url}
+                                alt={`Image ${index + 1} du film ${film.titre_film}`}
+                            />
+                        ))
+                }
+            </div>
+
+            <div>
+                {/* Informations supplémentaires sur le film */}
+                <ul>
+                    <li>
+                        <strong>Durée :</strong>
+                        {film.duree_film}
+                    </li>
+                    <li>
+                        <strong>Genre :</strong>
+                        {film.genre_film}
+                    </li>
+                    <li>
+                        <strong>Date de sortie :</strong>
+                        {film.datesortie_film}
+                    </li>
+                    <li>
+                        <strong>Synopsis :</strong>
+                        <p set:html={film?.synopsis_film} />
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</Layout>

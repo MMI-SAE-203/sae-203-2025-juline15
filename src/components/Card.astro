@@ -7,7 +7,7 @@ const films = await getImgCard();
     {
         films.map((film: any) => (
             <article class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
-                <h2 class="text-xl font-bold p-4">
+                <h2 class="text-xl font-bold p-5 px-8">
                     <a href={`/programmation/${film.id}`}>{film.titre_film}</a>
                 </h2>
                 <img
@@ -16,7 +16,7 @@ const films = await getImgCard();
                     alt={`Affiche de ${film.titre_film}`}
                 />
 
-                <div class="p-4">
+                <div class="p-5 px-10">
                     <ul class="mt-2 text-sm text-gray-600">
                         <li>
                             <strong>Début :</strong>{" "}
@@ -32,6 +32,15 @@ const films = await getImgCard();
                                 : "Interdit -12 ans"}
                         </li>
                     </ul>
+                </div>
+
+                <div class="p-4 text-center">
+                    <a
+                        href={`/programmation/${film.id}`}
+                        class="bg-red-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-900 transition "
+                    >
+                        En savoir plus
+                    </a>
                 </div>
             </article>
         ))
