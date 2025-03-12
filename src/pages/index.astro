@@ -1,5 +1,4 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,37 +6,185 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
 	<div>
-		<h1>Festival des films d'animation japonais</h1>
+		<h1 class="text-red-700">Festival des films d'animation japonais</h1>
+	</div>
+
+	<div class="flex flex-col lg:flex-row items-center gap-8 p-6">
+		<div class="lg:w-1/2 flex justify-center">
+			<img
+				src="/src/assets/img/accueil.webp"
+				alt="Diffusion d'un film japonais en plein air"
+				class="w-full max-w-md rounded-lg"
+			/>
+		</div>
+
+		<div class="lg:w-1/2">
+			<h2 class="text-center lg:text-left text-2xl font-bold">
+				Venez faire des rencontres uniques et partager votre passion !
+			</h2>
+			<p class="mt-4 text-black-700">
+				Bienvenue au <strong
+					>Festival des films d’animations japonais</strong
+				> ! Rejoignez-nous les <strong
+					>11, 12 et 13 Juillet 2025 au Parc des Expositions de
+					Belfort</strong
+				> pour une expérience unique. C'est le rendez-vous incontournable
+				pour tous les passionnés d'animation japonaise, où la magie de l'image
+				et du son se rencontrent pour trois jours de projections, de discussions
+				et de découvertes. Plongez au cœur des univers imaginaires, partagez
+				votre passion avec d'autres amateurs et vivez des moments inoubliables
+				dans un cadre exceptionnel !
+			</p>
+		</div>
 	</div>
 
 	<div>
-		<img
-			src="/src/assets/img/accueil.webp"
-			alt="diffusion d'un film japonais en plein air"
-		/>
+		<a
+			class="flex justify-center bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition mx-15 lg:mx-30 my-15"
+			href="/">CLIQUEZ POUR RÉSERVER VOS BILLETS</a
+		>
+	</div>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+		<div
+			class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+		>
+			<h3 class="p-5 px-8 text-xl mx-auto">La programmation</h3>
+			<img
+				class="w-90 mx-auto rounded-lg lg:p-4"
+				src="/src/assets/img/accueilprogra.webp"
+				alt="3 tickets de cinéma"
+			/>
+
+			<div class="p-5 px-10">
+				<ul class="mt-5 mx-20">
+					<li class="my-3">- Liste complète des films</li>
+					<li class="my-3">- Durée et genre</li>
+					<li class="my-3">- Synopsis</li>
+				</ul>
+			</div>
+
+			<div class="p-4 text-center mb-8">
+				<a
+					href="/programmation"
+					class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition"
+				>
+					EN SAVOIR PLUS
+				</a>
+			</div>
+		</div>
 	</div>
 
-	<div>
-		<h2>Venez faire des rencontres uniques et partager votre passion !</h2>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+		<div
+			class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+		>
+			<h3 class="p-5 px-8 text-xl mx-auto">Invités</h3>
+			<img
+				class="w-90 mx-auto rounded-lg lg:p-4"
+				src="/src/assets/img/accueilinvite.webp"
+				alt="Personnes sur des sièges de cinéma regardant par la fenêtre"
+			/>
+
+			<div class="p-5 px-10">
+				<ul class="mt-5 mx-20">
+					<li class="my-3">- Biographie</li>
+					<li class="my-3">- Films, séries</li>
+					<li class="my-3">- Médias</li>
+				</ul>
+			</div>
+
+			<div class="p-4 text-center mb-8">
+				<a
+					href="/invite"
+					class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition"
+				>
+					EN SAVOIR PLUS
+				</a>
+			</div>
+		</div>
 	</div>
 
-	<div>
-		<p>
-			Bienvenue au Festival des films d’animations japonais !
-			Rejoignez-nous les <strong
-				>11, 12 et 13 Juillet 2025 au Parc des Expositions de Belfort</strong
-			> pour une expérience unique. C'est le rendez-vous incontournable pour
-			tous les passionnés d'animation japonaise, où la magie de l'image et
-			du son se rencontrent pour trois jours de projections, de discussions
-			et de découvertes. Plongez au cœur des univers imaginaires, partagez
-			votre passion avec d'autres amateurs et vivez des moments inoubliables
-			dans un cadre exceptionnel !
-		</p>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+		<div
+			class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+		>
+			<h3 class="p-5 px-8 text-xl mx-auto">Informations pratiques</h3>
+			<img
+				class="w-90 mx-auto rounded-lg lg:p-4"
+				src="/src/assets/img/accueilinfo.webp"
+				alt="i de informations pratiques"
+			/>
+
+			<div class="p-5 px-10">
+				<ul class="mt-5 mx-20">
+					<li class="my-3">- Tarifs</li>
+					<li class="my-3">- Lieux, hébergement et transport</li>
+					<li class="my-3">- FAQ</li>
+				</ul>
+			</div>
+
+			<div class="p-4 text-center mb-8">
+				<a
+					href="/"
+					class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition"
+				>
+					EN SAVOIR PLUS
+				</a>
+			</div>
+		</div>
 	</div>
 
-	<div>
-		<a href="/">CLIQUEZ POUR RÉSERVER VOS BILLETS</a>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+		<div
+			class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+		>
+			<h3 class="p-5 px-8 text-xl mx-auto">Le Festival (à propos)</h3>
+			<img
+				class="w-90 mx-auto rounded-lg lg:p-4"
+				src="/src/assets/img/accueilapropos.webp"
+				alt="projection film en plein air"
+			/>
+
+			<div class="p-5 px-10">
+				<ul class="mt-5 mx-20">
+					<li class="my-3">- Historique</li>
+					<li class="my-3">- Équipe</li>
+					<li class="my-3">- Charte</li>
+				</ul>
+			</div>
+
+			<div class="p-4 text-center mb-8">
+				<a
+					href="/programmation"
+					class="bg-red-800 text-white px-4 py-2 rounded-lg hover:bg-red-900 transition"
+				>
+					EN SAVOIR PLUS
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mx-auto px-4">
+		<h2 class="text-2xl font-bold mb-6 text-center">Nos partenaires :</h2>
+		<div
+			class="flex flex-col lg:flex-row flex-wrap justify-center items-center gap-8 p-6"
+		>
+			<img
+				src="/src/assets/img/delice-dasie1.webp"
+				alt="Logo Délice d'Asie"
+				class="max-w-[200px] h-auto"
+			/>
+			<img
+				src="/src/assets/img/subway1.webp"
+				alt="Logo Subway"
+				class="max-w-[200px] h-auto"
+			/>
+			<img
+				src="/src/assets/img/boulanger1.webp"
+				alt="Logo Boulanger"
+				class="max-w-[200px] h-auto"
+			/>
+		</div>
 	</div>
 </Layout>
