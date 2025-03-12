@@ -2,19 +2,21 @@
 
 @theme {
     --font-Rounded: "M PLUS Rounded 1c", "sans-serif";
-    --font-Reggae: "Reggae One", "cursive";
+    --font-Reggae: "Reggae One", system-ui;
 }
 
 @layer base {
     h1 {
-        @apply font-Rounded;
+        @apply font-Reggae text-2xl text-center my-10;
     }
 
     h2 {
-        
+        @apply font-Rounded text-lg m-5 font-medium;
     }
 
-    h3 {
-    
+    h3 {}
+
+    body {
+        @apply font-Rounded text-sm font-medium;
     }
 }

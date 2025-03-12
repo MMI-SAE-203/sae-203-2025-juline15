@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource/m-plus-rounded-1c": "^5.2.5",
+    "@fontsource/reggae-one": "^5.2.5",
     "@tailwindcss/vite": "^4.0.12",
     "astro": "^5.4.2",
     "pocketbase": "^0.25.2",

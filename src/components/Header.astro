@@ -1,6 +1,5 @@
 ---
 import Logo from "../assets/icones/logo.svg";
-const currentPath = Astro.url.pathname;
 ---
 
 <header class="flex items-center justify-between p-4 bg-red-700 text-white">
@@ -30,10 +29,7 @@ const currentPath = Astro.url.pathname;
     >
         <ul class="flex flex-col gap-4 lg:flex-row">
             <li>
-                <a
-                    class={`block p-4 rounded-lg text-white ${currentPath === "/properties" ? "text-indigo-600 font-bold max-lg:bg-indigo-100 max-lg:rounded-lg" : ""}`}
-                    href="/">Le Festival (À propos)</a
-                >
+                <a class="block p-4 rounded-lg text-white" href="/">Le Festival (À propos)</a>
             </li>
             <li>
                 <a class="block p-4 rounded-lg text-white" href="/programmation"
