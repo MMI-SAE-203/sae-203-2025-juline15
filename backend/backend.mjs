@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
-const pb = new PocketBase('http://127.0.0.1:8090');
+const pb = new PocketBase('https://pocketbasesae203.juline-adam.fr/_/');
 
 //une fonction qui retourne la liste des activités(Ateliers, expositions, animations…) triés par date de projection
 export async function allActivitesSorted() {

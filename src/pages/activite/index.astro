@@ -1,9 +1,7 @@
 ---
-import PocketBase from "pocketbase";
 import { allActivitesSorted } from "../../../backend/backend.mjs";
 import { formatDate } from "../../../backend/helpers.js";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
 
 const activites = await allActivitesSorted();
 import Layout from "../../layouts/Layout.astro";
