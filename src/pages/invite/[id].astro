@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import {
     oneActeurID,
     getAllInvite,
-    getPhotoInvite,
+    oneActiviteID,
 } from "../../../backend/backend.mjs";
 
 const { id } = Astro.params;
@@ -15,6 +15,12 @@ if (!invite) {
     return Astro.redirect("/programmation");
 }
 
+let activite = null;
+if (invite.relation) {
+    activite = await oneActiviteID(invite.relation);
+}
+
+import { formatDate } from "../../../backend/helpers.js";
 ---
 
 <Layout>
@@ -27,11 +33,11 @@ if (!invite) {
             </h2>
 
             <div>
-               <img
-                   class="w-[250px] h-auto rounded-lg object-cover text-center"
-                   src={invite.imgUrl}
-                   alt={`Photo de ${invite.nom_invite}`}
-               />
+                <img
+                    class="w-[250px] h-auto rounded-lg object-cover text-center"
+                    src={invite.imgUrl}
+                    alt={`Photo de ${invite.nom_invite}`}
+                />
             </div>
 
             <div>
@@ -41,5 +47,34 @@ if (!invite) {
                 </ul>
             </div>
         </article>
+
+        {
+            activite ? (
+                <div class="mt-10 p-6 bg-white rounded-lg shadow-md">
+                    <h2 class="text-2xl font-semibold text-center">
+                        Activité associée
+                    </h2>
+                    <p class="text-xl font-semibold mb-5">
+                        <a
+                            href={`/activite/${activite.id}`}
+                            class="hover:underline"
+                        >
+                            {activite.titre_activite}
+                        </a>
+                    </p>
+                    <p class="text-lg mb-7 lg:text-xl">
+                        Date & Heure : {formatDate(activite.dateheure_activite)}
+                    </p>
+                    <div set:html={activite.description_activite} />
+                    <p class="mt-4 text-red-700">
+                        Catégorie : {activite.categorie}
+                    </p>
+                </div>
+            ) : (
+                <p class="text-gray-500 text-center mt-6">
+                    Aucune activité associée.
+                </p>
+            )
+        }
     </div>
 </Layout>
