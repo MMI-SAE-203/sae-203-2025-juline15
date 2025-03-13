@@ -6,13 +6,15 @@ import Layout from "../../layouts/Layout.astro";
     <div>
         <h1>Contactez-nous</h1>
     </div>
-    <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div
+        class="flex flex-col items-center justify-center mt-15"
+    >
+
         <form
             action="#"
             method="POST"
-            class="max-w-lg w-full bg-white p-6 rounded-lg shadow-lg"
+            class="max-w-lg lg:max-w-2xl w-full bg-white p-6 rounded-lg shadow-lg"
         >
-
             <div class="mb-4">
                 <label for="nom" class="block text-sm font-medium text-gray-700"
                     >Nom</label
@@ -77,5 +79,5 @@ import Layout from "../../layouts/Layout.astro";
                 Envoyer
             </button>
         </form>
-    </body>
+    </div>
 </Layout>
