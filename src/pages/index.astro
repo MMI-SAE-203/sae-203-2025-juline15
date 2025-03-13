@@ -1,6 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImgAcceuil from "../assets/img/accueil.webp";
+import ImgProgrammation from "../assets/img/accueilprogra.webp";
+import ImgInvite from "../assets/img/accueilinvite.webp";
+import ImgInfo from "../assets/img/accueilinfo.webp";
+import ImgApropos from "../assets/img/accueilapropos.webp";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -54,8 +58,12 @@ import ImgAcceuil from "../assets/img/accueil.webp";
 			<h3 class="p-5 px-8 text-xl mx-auto">La programmation</h3>
 			<img
 				class="w-90 mx-auto rounded-lg lg:p-4"
-				src="/src/assets/img/accueilprogra.webp"
-				alt="3 tickets de cinéma"
+				src={ImgProgrammation.src}
+				alt="
+				3
+				tickets
+				de
+				cinéma"
 			/>
 			<div class="p-5 px-10">
 				<ul class="mt-5 mx-20">
@@ -80,7 +88,7 @@ import ImgAcceuil from "../assets/img/accueil.webp";
 			<h3 class="p-5 px-8 text-xl mx-auto">Invités</h3>
 			<img
 				class="w-90 mx-auto rounded-lg lg:p-4"
-				src="/src/assets/img/accueilinvite.webp"
+				src={ImgInvite.src}
 				alt="Personnes sur des sièges de cinéma regardant par la fenêtre"
 			/>
 			<div class="p-5 px-10">
@@ -106,7 +114,7 @@ import ImgAcceuil from "../assets/img/accueil.webp";
 			<h3 class="p-5 px-8 text-xl mx-auto">Informations pratiques</h3>
 			<img
 				class="w-90 mx-auto rounded-lg lg:p-4"
-				src="/src/assets/img/accueilinfo.webp"
+				src={ImgInfo.src}
 				alt="i de informations pratiques"
 			/>
 			<div class="p-5 px-10">
@@ -132,7 +140,7 @@ import ImgAcceuil from "../assets/img/accueil.webp";
 			<h3 class="p-5 px-8 text-xl mx-auto">Le Festival (à propos)</h3>
 			<img
 				class="w-90 mx-auto rounded-lg lg:p-4"
-				src="../assets/img/accueilapropos.webp"
+				src={ImgApropos.src}
 				alt="projection film en plein air"
 			/>
 			<div class="p-5 px-10">
