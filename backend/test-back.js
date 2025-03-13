@@ -58,7 +58,7 @@ try {
 } catch (e) {
     console.error(e);
 }
-    */
+*/
 
 //Une fonction qui retourne toutes les activités d’un animateur donné par son nom
 /*

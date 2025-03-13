@@ -1,0 +1,38 @@
+---
+import PocketBase from "pocketbase";
+import { allActivitesSorted } from "../../../backend/backend.mjs";
+import { formatDate } from "../../../backend/helpers.js";
+
+const pb = new PocketBase("http://127.0.0.1:8090");
+
+const activites = await allActivitesSorted();
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+    <main class="p-6">
+        <h1 class="text-3xl font-bold mb-15 text-center">Nos activités</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-15">
+            {
+                activites.map((activite) => (
+                    <div class="block rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 max-w-md mx-auto bg-white p-6">
+                        <h2 class="text-lg font-semibold mb-5 text-center">
+                            {activite.titre_activite}
+                        </h2>
+                        <p class="text-lg mb-2 lg:text-xl">
+                            Date & Heure :{" "}
+                            {formatDate(activite.dateheure_activite)}
+                        </p>
+                        <p class="text-sm mb-2">
+                            Catégorie : {activite.categorie}
+                        </p>
+                        <p class="text-sm">
+                            <div set:html={activite.description_activite} />
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </main>
+</Layout>

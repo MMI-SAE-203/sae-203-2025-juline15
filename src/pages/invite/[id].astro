@@ -1,6 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { oneActeurID, getAllInvite } from "../../../backend/backend.mjs";
+import {
+    oneActeurID,
+    getAllInvite,
+    getPhotoInvite,
+} from "../../../backend/backend.mjs";
 
 const { id } = Astro.params;
 const invite = await oneActeurID(id);
@@ -11,12 +15,6 @@ if (!invite) {
     return Astro.redirect("/programmation");
 }
 
-export async function getStaticPaths() {
-    const invites = await getAllInvite();
-    return invites.map((invite) => ({
-        params: { id: invite.id.toString() },
-    }));
-}
 ---
 
 <Layout>
@@ -29,17 +27,11 @@ export async function getStaticPaths() {
             </h2>
 
             <div>
-                {
-                    imageUrls.length > 0 &&
-                        imageUrls.map((url, index) => (
-                            <img
-                                key={index}
-                                class="w-full rounded-lg"
-                                src={url}
-                                alt={`Photo ${index + 1} de ${invite.nom_invite}`}
-                            />
-                        ))
-                }
+               <img
+                   class="w-[250px] h-auto rounded-lg object-cover text-center"
+                   src={invite.imgUrl}
+                   alt={`Photo de ${invite.nom_invite}`}
+               />
             </div>
 
             <div>

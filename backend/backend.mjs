@@ -30,8 +30,8 @@ export async function oneActiviteID(id) {
 }
 
 //une fonction qui retourne les infos d'un acteur / réalisateur en donnant son id en paramètre
-export async function oneActeurID(id) {
-    const oneRecord = await pb.collection('invite').getOne(id);
+export async function OneActeurID(id) {
+    let oneRecord = await pb.collection('invite').getOne(id);
     return oneRecord;
 }
 
@@ -128,5 +128,12 @@ export const getMultipleImg = async (id, collection = "film") => {
 // Fonction qui retourne tous les invite
 export async function getAllInvite() {
     const oneRecord = await pb.collection('invite').getFullList();
+    return oneRecord;
+}
+
+// Fonction pour les pages id des acteurs
+export async function oneActeurID(id) {
+    let oneRecord = await pb.collection('invite').getOne(id);
+    oneRecord.imgUrl = pb.files.getURL(oneRecord, oneRecord.photo_invite);
     return oneRecord;
 }
