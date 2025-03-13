@@ -6,10 +6,34 @@ import Layout from "../../layouts/Layout.astro";
     <div>
         <h1>Contactez-nous</h1>
     </div>
-    <div
-        class="flex flex-col items-center justify-center mt-15"
-    >
 
+    <div>
+        <h2 class="text-xl">Nos réseaux sociaux :</h2>
+    </div>
+    <div class="flex justify-center mt-4 lg:mt-0 space-x-4">
+        <a href="https://instagram.com" aria-label="Instagram">
+            <img
+                src="/src/assets/icones/insta.svg"
+                alt="Instagram"
+                class="w-16 h-16 mx-4"
+            />
+        </a>
+        <a href="https://www.tiktok.com" aria-label="Tiktok">
+            <img
+                src="/src/assets/icones/tiktok.svg"
+                alt="Tiktok"
+                class="w-16 h-16 mx-4"
+            />
+        </a>
+    </div>
+
+    <div>
+        <h2 class="text-xl mt-20">
+            Inscrivez vous pour recevoir des offres et informations exclusives :
+        </h2>
+    </div>
+
+    <div class="flex flex-col items-center justify-center my-15">
         <form
             action="#"
             method="POST"
