@@ -5,6 +5,16 @@
     --font-Reggae: "Reggae One", system-ui;
 }
 
+@layer components {
+    .grille {
+        @apply px-6 lg:grid lg:grid-cols-(--my-grid) lg:justify-center lg:gap-12;
+    }
+
+    .noscroll {
+        overflow: hidden;
+    }
+}
+
 @layer base {
     h1 {
         @apply font-Reggae text-2xl text-center my-10;
