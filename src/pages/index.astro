@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ImgAcceuil from "../assets/img/accueil.webp";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -13,7 +14,7 @@ import Layout from "../layouts/Layout.astro";
 	<div class="flex flex-col lg:flex-row items-center gap-8 p-6">
 		<div class="lg:w-1/2 flex justify-center">
 			<img
-				src="./assets/img/accueil.webp"
+				src={ImgAcceuil.src}
 				alt="Diffusion d'un film japonais en plein air"
 				class="w-full max-w-md rounded-lg"
 			/>
