@@ -5,7 +5,7 @@ import Logo from "../assets/icones/logo.svg";
 <header class="flex items-center justify-between p-4 bg-red-700 text-white">
     <div class="flex items-center">
         <a href="/">
-            <img src="/src/assets/icones/logo.svg" alt="logo" />
+            <img src={Logo.src} alt="logo" />
         </a>
     </div>
     <button
@@ -29,7 +29,9 @@ import Logo from "../assets/icones/logo.svg";
     >
         <ul class="flex flex-col gap-4 lg:flex-row text-2xl lg:text-lg">
             <li>
-                <a class="block p-4 rounded-lg text-white" href="/apropos">Le Festival (À propos)</a>
+                <a class="block p-4 rounded-lg text-white" href="/apropos"
+                    >Le Festival (À propos)</a
+                >
             </li>
             <li>
                 <a class="block p-4 rounded-lg text-white" href="/programmation"
