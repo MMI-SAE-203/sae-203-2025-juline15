@@ -58,7 +58,7 @@ export async function getStaticPaths() {
                                     .map((url, index) => (
                                         <img
                                             key={index}
-                                            class="w-[40vw] max-w-[215px] lg:max-w-[400px] h-auto rounded-lg object-cover"
+                                            class="w-[40vw] max-w-full lg:max-w-[400px] h-auto rounded-lg object-cover"
                                             src={url}
                                             alt={`Image ${index + 2} du film ${film.titre_film}`}
                                         />
